@@ -148,7 +148,10 @@ namespace GoStorageCaching
             if (find != null)
             {
                 find.Dispose();
-                DownloadQueues.Remove(fileDownloadInfo);
+                lock (DownloadQueues)
+                {
+                    DownloadQueues.Remove(fileDownloadInfo);
+                }
             }
             fileDownloadInfo.Dispose();
         }
